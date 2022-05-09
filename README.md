@@ -7,5 +7,6 @@ However, we recently observer the ineffectiveness of those FDIA designs against 
 
 In the scenario of MHE, we will call "static state estimators" as those estiamtors which are designed with window's size equal to 1 (including those L2 estimators we mention at the beginning).
 
-We share the simulation of MH-FDIA design here:
-- 
+We share the simulation of MH-FDIA design here: <br>
+![image](https://user-images.githubusercontent.com/36635562/167336746-5fd512fc-063f-490e-bee7-f0b780f1d4c5.png)
+
