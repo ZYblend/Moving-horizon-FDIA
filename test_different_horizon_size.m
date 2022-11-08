@@ -7,7 +7,7 @@ n_attack =  round(pa*n_meas);
 num_sinario = 19;
 T1_array = round(linspace(2,20,num_sinario));
 
-num_iter = 2;
+num_iter = 20;
 Data = cell(num_iter,num_sinario);
 for iter1 = 1:num_iter
     I = sort(randperm(n_meas,n_attack)).';
@@ -25,5 +25,5 @@ for iter1 = 1:num_iter
         Data{iter1,iter} = data;
     end
 end
-save Data.mat Data
-save T1_array.mat T1_array
+save('Data.mat', 'Data','-v7.3');
+save('T1_array.mat', 'T1_array','-v7.3');
