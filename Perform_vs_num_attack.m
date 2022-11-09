@@ -23,12 +23,7 @@ load_system(model);
 Simulink.BlockDiagram.buildRapidAcceleratorTarget(model);
 
 % 2) Set up the iterations that we want to compute.
-% mean_effect_MHFDIA = zeros(tot,1);
-% max_effect_MHFDIA = zeros(tot,1);
-% min_effect_MHFDIA = zeros(tot,1);
-% Max_BDD_MHFDIA = zeros(tot,1);
-% Mean_BDD_MHFDIA = zeros(tot,1);
-% Min_BDD_MHFDIA = zeros(tot,1);
+
 
 for idx = 2:tot
 
@@ -90,18 +85,6 @@ for idx = 2:tot
     dir_simout = "sim_out/"+ num2str(idx)+"/sim_out.mat";
     save(dir_simout,'simOut','-v7.3');
            
-%     time_vec  = simOut{idx}.logsout.getElement('x').Values.Time;
-%     x          = simOut{idx}.logsout.getElement('x').Values.Data; % true states
-%     x_hat_L2O  = simOut{idx}.logsout.getElement('x_hat_L2O').Values.Data;  % Observed states (MHFDIA)
-%     BDD_res1   = simOut{idx}.logsout.getElement('BDD_res1').Values.Data; % Bad data residue(MHFDIA)
-%     
-%     mean_effect_MHFDIA(idx) = mean(vecnorm(x-x_hat_L2O,2,2));
-%     max_effect_MHFDIA(idx) = max(vecnorm(x-x_hat_L2O,2,2));
-%     min_effect_MHFDIA(idx) = min(vecnorm(x-x_hat_L2O,2,2));
-%     
-%     Max_BDD_MHFDIA(idx) = max(BDD_res1);
-%     Mean_BDD_MHFDIA(idx) = mean(BDD_res1);
-%     Min_BDD_MHFDIA(idx) = min(BDD_res1);
 end
     
     
