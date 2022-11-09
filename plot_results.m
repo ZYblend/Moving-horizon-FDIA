@@ -6,71 +6,68 @@
 time_vec  = out.logsout.getElement('x').Values.Time;
 
 % State vectors
-x         = out.logsout.getElement('x').Values.Data; % true states
-x_hat_L2O  = out.logsout.getElement('x_hat_L2O').Values.Data;  % Observed states (PGA-MHFDIA)
-x_hat_L2O2 = out.logsout.getElement('x_hat_L2O2').Values.Data; % Observed states (Eig-MHFDIA)
+x     = out.logsout.getElement('x').Values.Data; % 
+y     = out.logsout.getElement('y').Values.Data;  % 
+theta = out.logsout.getElement('theta').Values.Data; % 
 
-BDD_res1        = out.logsout.getElement('BDD_res1').Values.Data; % Bad data residue(MHFDIA)
-BDD_res2        = out.logsout.getElement('BDD_res2').Values.Data; % Bad data residue (Eig-MHFDIA)
+x_t     = out.logsout.getElement('x_target').Values.Data; % 
+y_t     = out.logsout.getElement('y_target').Values.Data;  % 
+theta_t = out.logsout.getElement('theta_target').Values.Data; % 
 
 
 %% Ploting/Visualization/Metric tables
-
-%% 1. delta estimates
-n_delta = size(x,2)/2;  % number of generator angles
-
-
 LW = 1.5;  % linewidth
 FS = 15;   % font size
 
-N_start_attack = 0.2*N_samples+T;   % start attack injection
+T_start_attack = .2*T_final;
+Ts = 0.01;
+N_start_attack = round(T_start_attack/Ts);
+
 
 %% effectiveness
-effect1 = vecnorm(x - x_hat_L2O,2,2)./vecnorm(x,2,2);
-effect1(1:N_start_attack)=0;
-effect2 = vecnorm(x - x_hat_L2O2,2,2)./vecnorm(x,2,2);
-effect2(1:N_start_attack)=0;
-
+real = [theta,x,y];
+target = [theta_t,x_t,y_t];
+effect = vecnorm(real-target,2,2)./vecnorm(real,2,2);
+effect(1:N_start_attack)=0;
 
 figure,
-subplot(2,2,1)
-plot(time_vec,effect1,'k','LineWidth',LW)
-ylabel('Effectiveness','FontWeight','bold')
-title('MH-PGA-FDIA');
+plot(x,y,'k-','LineWidth',LW)
+hold on, plot(x_t,y_t,'r--','LineWidth',LW)
+xlabel('x','FontWeight','bold')
+ylabel('y','FontWeight','bold')
+title('Path-tracking Performance');
 set(gca,'fontweight','bold','fontsize',12) 
 set(gca,'LineWidth',LW)
-xlim([1 8])
-% ylim([0,0.08])
 
-subplot(2,2,2)
-plot(time_vec,effect2,'k','LineWidth',LW)
+figure,
+plot(time_vec,effect,'k','LineWidth',LW)
 % ylabel('\alpha','FontWeight','bold')
-title('MH-Eig-FDIA');
+title('Effectiveness');
 set(gca,'fontweight','bold','fontsize',12) 
 set(gca,'LineWidth',LW)
-xlim([1 8])
+% xlim([1 8])
 % ylim([0,0.002])
 
-%% BDD_res
-BDD_res2(1:N_start_attack)=0;
-BDD_res1(1:N_start_attack)=0;
-
-subplot(2,2,3)
-plot(time_vec,BDD_res1,'k','LineWidth',LW), hold on
-plot(time_vec,T1*BDD_thresh*ones(length(time_vec),1),'r--','LineWidth',2*LW)
-ylabel('Stealthiness','FontWeight','bold')
-set(gca,'fontweight','bold','fontsize',12) 
-set(gca,'LineWidth',LW)
-xlim([0 8])
-
-subplot(2,2,4)
-plot(time_vec,BDD_res2,'k','LineWidth',LW), hold on
-plot(time_vec,T1*BDD_thresh*ones(length(time_vec),1),'r--','LineWidth',2*LW)
-% ylabel('Bad Data Detection Residual','FontWeight','bold')
-% title('MH-L2-FDIA')
-set(gca,'fontweight','bold','fontsize',12) 
-set(gca,'LineWidth',LW)
-xlim([0 8])
+% %% BDD_res
+% BDD_res2(1:N_start_attack)=0;
+% BDD_res1(1:N_start_attack)=0;
+% 
+% subplot(2,2,3)
+% plot(time_vec,BDD_res1,'k','LineWidth',LW), hold on
+% plot(time_vec,T1*BDD_thresh*ones(length(time_vec),1),'r--','LineWidth',2*LW)
+% ylabel('Stealthiness','FontWeight','bold')
+% set(gca,'fontweight','bold','fontsize',12) 
+% set(gca,'LineWidth',LW)
+% xlim([0 8])
+% 
+% subplot(2,2,4)
+% plot(time_vec,BDD_res2,'k','LineWidth',LW), hold on
+% plot(time_vec,T1*BDD_thresh*ones(length(time_vec),1),'r--','LineWidth',2*LW)
+% % ylabel('Bad Data Detection Residual','FontWeight','bold')
+% % title('MH-L2-FDIA')
+% set(gca,'fontweight','bold','fontsize',12) 
+% set(gca,'LineWidth',LW)
+% xlim([0 8])
 
 % %% Error table
 % error_LO = x - x_hat_LO;

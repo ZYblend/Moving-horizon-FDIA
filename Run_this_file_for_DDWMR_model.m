@@ -36,6 +36,7 @@ n_int = 2;      % number of control inputs
 Ts = 0.01;  % (s)
 
 T_final = 20;
+T_start_attack = .2*T_final;  % Time to begin attack
 
 %% covariance of measurement noise
 R = 1e-3;
@@ -76,16 +77,16 @@ T_start_attack = .2*T_final;  % Time to begin attack
 
 
 %% Bad Data Detection
-BDD_thresh = 0.05;  % Bad data detection tolerance
+BDD_thresh = 0.1;  % Bad data detection tolerance
 
 %% L2 moving-horizon attack generation
 % initial T attacks (not injected in system, only for atatck design)
 T1 = 2*T;   % time horizon for FDIA design
 [PhiT1,HT1,Theta_T1,G_T1] = opti_params(Ad,Bd,Cd,T1);
 
-I = sort(randperm(n_meas,n_attack)).';
-% I = [1;2;9;11;12;16;17];
-I_attack_ini = repmat(I,1,T1);           % fixed attack support
+I_single = sort(randperm(n_meas,n_attack)).';
+% I_single = [1;2;9;11;12;16;17];
+I_attack_ini = repmat(I_single,1,T1);           % fixed attack support
 
 % flat attack support for T horizon
 I_aux = linspace(0,(T1-1)*n_meas,T1);
@@ -111,7 +112,7 @@ A2 = OI*U_i.';
 b1p = inv(S1)*IO*U_history.';
 b2p = OI*U_history.';
 
-max_iter = 300;   % maximal number of iteration of PGA algorithm
+max_iter = 2000;   % maximal number of iteration of PGA algorithm
 
 
 %% L2 moving-horizon FDIA attack generation (Eigenvalue problem version)
