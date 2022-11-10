@@ -10,3 +10,6 @@ In the scenario of MHE, we will call "static state estimators" as those estiamto
 We share the simulation of MH-FDIA design here: <br>
 ![image](https://user-images.githubusercontent.com/36635562/167336746-5fd512fc-063f-490e-bee7-f0b780f1d4c5.png)
 
+# Autonomous Vehicle Example
+The vehicle model, controller design, and the uncented Kalman filter design can be found in our paper 
+

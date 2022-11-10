@@ -18,7 +18,7 @@ Im = 0.025;                      % inertia of wheel about wheel diameter (kg.m^2
 I  = Ic +mc*d^2+2*mw*L^2+2*Im;   % inertia of whole robot (kg.m^2)
 
 %% Initial condition
-theta0=0;
+theta0=1.5;
 x0=0;
 y0=0;
 v0=0.8;
