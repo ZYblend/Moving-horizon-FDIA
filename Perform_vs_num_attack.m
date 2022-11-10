@@ -10,7 +10,7 @@ run_model;
 %% simulation parameters
 tot = 19;
 N_Attack = round(linspace(1,tot,tot));
-n_sample = 10;
+n_sample = 50;
 
 
 %% Sim
