@@ -31,8 +31,8 @@ effect = vecnorm(real-target,2,2)./vecnorm(real,2,2);
 effect(1:N_start_attack)=0;
 
 figure,
-plot(x,y,'k-','LineWidth',LW)
-hold on, plot(x_t,y_t,'r--','LineWidth',LW)
+plot(x_t,y_t,'r--','LineWidth',LW)
+hold on, plot(x,y,'k-','LineWidth',LW)
 xlabel('x','FontWeight','bold')
 ylabel('y','FontWeight','bold')
 title('Path-tracking Performance');

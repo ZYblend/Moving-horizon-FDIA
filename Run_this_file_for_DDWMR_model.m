@@ -77,7 +77,7 @@ T_start_attack = .2*T_final;  % Time to begin attack
 
 
 %% Bad Data Detection
-BDD_thresh = 0.1;  % Bad data detection tolerance
+BDD_thresh = 0.5;  % Bad data detection tolerance
 
 %% L2 moving-horizon attack generation
 % initial T attacks (not injected in system, only for atatck design)
