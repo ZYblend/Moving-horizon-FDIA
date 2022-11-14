@@ -62,7 +62,7 @@ BDD_thresh = 0.05*0.6352;
 T1 = 20;
 
 % x axis
-N_Attack = linspace(2,19,18);
+N_attack = linspace(2,19,18);
 N_Attack2 = [N_attack, fliplr(N_attack)];
 
 LW = 1.5;  % linewidth
