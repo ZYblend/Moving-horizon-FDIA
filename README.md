@@ -10,3 +10,7 @@ In the scenario of MHE, we will call "static state estimators" as those estiamto
 We share the simulation of MH-FDIA design here: <br>
 ![image](https://user-images.githubusercontent.com/36635562/167336746-5fd512fc-063f-490e-bee7-f0b780f1d4c5.png)
 
+In this repo, I am presenting two demos to validate the proposed MH-FDIA:
+1. linear control system of IEEE 14-bus system (see branch **demo_14_bus_system**)
+2. nonlinear path-tracking control system of differential--driven mobile wheeled robot (see branch **demo_suto_vehicle**)
+
