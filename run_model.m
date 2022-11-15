@@ -54,7 +54,7 @@ Y0      = zeros(m,T);
 T_start_opt(:)    = 1.5*T*T_sample; % start time for the optimization routines. Wait to collect enoguh data before calling the optimizers
 
 %% Attack Parameters
-pa = 0.2;
+pa = 0.5;
 n_attack =  round(pa*n_meas);
 % n_attack = 1;
 T_start_attack = .2*T_final;  % Time to begin attack
@@ -69,7 +69,7 @@ T1 = 20;   % time horizon for FDIA design
 [PhiT1,HT1,Theta_T1,G_T1] = opti_params(A_bar_d,B_bar_d,C_obsv_d,T1);
 
 I = sort(randperm(n_meas,n_attack)).';
-% I = [1;2;9;11;12;16;17];
+% I = [3;4];
 I_attack_ini = repmat(I,1,T1);           % fixed attack support
 
 % flat attack support for T horizon
@@ -100,7 +100,7 @@ A2 = OI*U_i.';
 b1p = inv(S1)*IO*U_history.';
 b2p = OI*U_history.';
 
-max_iter = 300;   % maximal number of iteration of PGA algorithm
+max_iter = 500;   % maximal number of iteration of PGA algorithm
 
 % G1 = eye(T1*n_meas)-PhiT1*pinv(PhiT1,0.01); 
 % G2 = eye(n_meas*T)-PhiT*pinv(PhiT,0.01);

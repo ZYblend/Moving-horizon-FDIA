@@ -30,7 +30,7 @@ A2 = OI*U_i.';
 b1p = inv(S1)*IO*U_history.';
 b2p = OI*U_history.';
 
-max_iter = 300;   % maximal number of iteration of PGA algorithm
+max_iter = 2000;   % maximal number of iteration of PGA algorithm
 
 % G1 = eye(T1*n_meas)-PhiT1*pinv(PhiT1,0.01); 
 % G2 = eye(n_meas*T)-PhiT*pinv(PhiT,0.01);

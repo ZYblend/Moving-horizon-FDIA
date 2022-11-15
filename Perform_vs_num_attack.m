@@ -16,22 +16,36 @@ n_sample = 50;
 %% Sim
 % 1) Load model and initialize the pool.
 % parpool;
+model1 = 'System_model_discrete_static';
 model = 'System_model_discrete';
+load_system(model1);
 load_system(model);
 
 % Build the Rapid Accelerator target
+Simulink.BlockDiagram.buildRapidAcceleratorTarget(model1);
 Simulink.BlockDiagram.buildRapidAcceleratorTarget(model);
 
 % 2) Set up the iterations that we want to compute.
 
 
+% for number of attacks bigger than 2
 for idx = 2:tot
 
+    rng default  % reset random generator for different attack percentage
+
     % simulation inputs
-    sim_inp = repmat(Simulink.SimulationInput(model),n_sample,1);
+    if idx == 1
+        sim_inp = repmat(Simulink.SimulationInput(model1),n_sample,1);
+    else
+        sim_inp = repmat(Simulink.SimulationInput(model),n_sample,1);
+    end
+    attack_support = cell(n_sample,1);
     for iter = 1:n_sample
         % load simulation params
+        rng shuffle  % avoid repeatibility
+
         run_model_for_perform_vs_num_attack;
+        max_iter = inf;
 
         sim_inp(iter) = sim_inp(iter).setVariable('A_bar_d',A_bar_d);
         sim_inp(iter) = sim_inp(iter).setVariable('B_bar_d',B_bar_d);
@@ -61,6 +75,7 @@ for idx = 2:tot
         sim_inp(iter) = sim_inp(iter).setVariable('T',T);
         sim_inp(iter) = sim_inp(iter).setVariable('T1',T1);
         sim_inp(iter) = sim_inp(iter).setVariable('I',I);  % attack support
+        attack_support{iter,1} = I;
 
         sim_inp(iter) = sim_inp(iter).setVariable('Theta_T',Theta_T);
         sim_inp(iter) = sim_inp(iter).setVariable('G_T',G_T);
@@ -84,6 +99,10 @@ for idx = 2:tot
 
     dir_simout = "sim_out/"+ num2str(idx)+"/sim_out.mat";
     save(dir_simout,'simOut','-v7.3');
+
+    dir_support = "sim_out/"+ num2str(idx)+ "/attack_support.mat";
+    save(dir_support,'attack_support','-v7.3');
+
            
 end
     

@@ -65,19 +65,23 @@ sigma2_max = S2(1,1);   % biggest singular value of A2
 A2_dagger  = V2*(S2\(U21.'));
 
 % algorithm parameters
-lambda_0 = 1e-3;
+lambda_0 = 1e-4;
 % max_iter = 1000;
-tol      = 1e-6;
+tol      = 1e-4;
 
 e_i = zeros(m,1);
 stop_iter = 0;
 if norm(U22.'*cons_b) < epsilon
     [~,X,~,stop_iter] = PGA_solver2(obj_A,cons_A,obj_b,cons_b,A2_dagger,sigma2_max,epsilon,lambda_0,max_iter,tol);
     %% Output
-    if stop_iter < max_iter
-        e_i(I_i) = X(:,stop_iter);
+    if max_iter == inf
+        e_i(I_i) = X(:,stop_iter-1);
     else
-        e_i(I_i) = X(:,end);
+        if stop_iter < max_iter
+            e_i(I_i) = X(:,stop_iter);
+        else
+            e_i(I_i) = X(:,end);
+        end
     end
 end
 
