@@ -74,15 +74,12 @@ stop_iter = 0;
 if norm(U22.'*cons_b) < epsilon
     [~,X,~,stop_iter] = PGA_solver2(obj_A,cons_A,obj_b,cons_b,A2_dagger,sigma2_max,epsilon,lambda_0,max_iter,tol);
     %% Output
-    if max_iter == inf
-        e_i(I_i) = X(:,stop_iter-1);
-    else
-        if stop_iter < max_iter
-            e_i(I_i) = X(:,stop_iter);
-        else
-            e_i(I_i) = X(:,end);
-        end
-    end
+%     if stop_iter < max_iter
+%         e_i(I_i) = X(:,stop_iter-1);
+%     else
+%         e_i(I_i) = X(:,end);
+%     end
+    e_i(I_i) = X(:,stop_iter-1);
 end
 
 

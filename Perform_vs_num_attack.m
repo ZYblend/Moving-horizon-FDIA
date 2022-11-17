@@ -29,7 +29,7 @@ Simulink.BlockDiagram.buildRapidAcceleratorTarget(model);
 
 
 % for number of attacks bigger than 2
-for idx = 2:tot
+for idx = 1:tot
 
     rng default  % reset random generator for different attack percentage
 
@@ -45,7 +45,6 @@ for idx = 2:tot
         rng shuffle  % avoid repeatibility
 
         run_model_for_perform_vs_num_attack;
-        max_iter = inf;
 
         sim_inp(iter) = sim_inp(iter).setVariable('A_bar_d',A_bar_d);
         sim_inp(iter) = sim_inp(iter).setVariable('B_bar_d',B_bar_d);
