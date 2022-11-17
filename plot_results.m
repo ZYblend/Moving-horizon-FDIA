@@ -26,9 +26,10 @@ FS = 15;   % font size
 N_start_attack = 0.2*N_samples+T;   % start attack injection
 
 %% effectiveness
-effect1 = vecnorm(x - x_hat_L2O,2,2)./vecnorm(x,2,2);
+effect1 = vecnorm(x - x_hat_L2O,2,2);
 effect1(1:N_start_attack)=0;
-effect2 = vecnorm(x - x_hat_L2O2,2,2)./vecnorm(x,2,2);
+BDD_res1(1:N_start_attack)=0;
+effect2 = vecnorm(x - x_hat_L2O2,2,2);
 effect2(1:N_start_attack)=0;
 
 
@@ -40,7 +41,7 @@ title('MH-PGA-FDIA');
 set(gca,'fontweight','bold','fontsize',12) 
 set(gca,'LineWidth',LW)
 xlim([1 8])
-% ylim([0,0.08])
+ylim([0,0.06])
 
 subplot(2,2,2)
 plot(time_vec,effect2,'k','LineWidth',LW)
@@ -49,7 +50,7 @@ title('MH-Eig-FDIA');
 set(gca,'fontweight','bold','fontsize',12) 
 set(gca,'LineWidth',LW)
 xlim([1 8])
-% ylim([0,0.002])
+ylim([0,0.06])
 
 %% BDD_res
 BDD_res2(1:N_start_attack)=0;

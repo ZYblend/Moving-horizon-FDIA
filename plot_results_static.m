@@ -22,8 +22,8 @@ LW = 1.5;  % linewidth
 FS = 15;   % font size
 
 %% effectiveness
-effect1 = vecnorm(x - x_hat_L2O,2,2)/vecnorm(x,2,2);
-effect2 = vecnorm(x - x_hat_L2O2,2,2)/vecnorm(x,2,2);
+effect1 = vecnorm(x - x_hat_L2O,2,2);
+effect2 = vecnorm(x - x_hat_L2O2,2,2);
 
 figure,
 subplot(2,2,1)

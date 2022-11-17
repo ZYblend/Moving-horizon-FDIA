@@ -27,7 +27,7 @@ Min_BDD_EIGFDIA     = zeros(num_iter,1);
 
 N_start_attack = 0.2*N_samples+T;   % start attack injection
 
-parfor idx = 1:num_iter
+for idx = 1:num_iter
     max_iter = Max_iter(idx);
     simOut = sim('System_model_discrete');       
            

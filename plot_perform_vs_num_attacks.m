@@ -11,7 +11,7 @@ Mean_BDD = zeros(tot,1);
 Max_BDD = zeros(tot,1);
 Min_BDD = zeros(tot,1);
 
-for idx = 1:tot
+for idx = 2:tot
     dir_simout = "sim_out/"+ num2str(idx)+"/sim_out.mat";
     load(dir_simout);
 
@@ -24,20 +24,30 @@ for idx = 1:tot
     Mean_BDD_MHFDIA = zeros(n_sample,1);
     Min_BDD_MHFDIA = zeros(n_sample,1);
 
+    x          = simOut(1,1).logsout.getElement('x').Values.Data; % true states
+
     for iter = 1:n_sample
         
-        if idx == 1
-            time_vec  = simOut(iter,1).logsout.getElement('x2').Values.Time;
-            x          = simOut(iter,1).logsout.getElement('x2').Values.Data; % true states
-            x_hat_L2O  = simOut(iter,1).logsout.getElement('x_hat_L2O2').Values.Data;  % Observed states (MHFDIA)
-            BDD_res1   = simOut(iter,1).logsout.getElement('BDD_res2').Values.Data; % Bad data residue(MHFDIA)
-        else
-            time_vec  = simOut(iter,1).logsout.getElement('x').Values.Time;
-            x          = simOut(iter,1).logsout.getElement('x').Values.Data; % true states
-            x_hat_L2O  = simOut(iter,1).logsout.getElement('x_hat_L2O').Values.Data;  % Observed states (MHFDIA)
-            BDD_res1   = simOut(iter,1).logsout.getElement('BDD_res1').Values.Data; % Bad data residue(MHFDIA)
-        end
+%         if idx == 1
+%             time_vec  = simOut(iter,1).logsout.getElement('x2').Values.Time;
+%             x          = simOut(iter,1).logsout.getElement('x2').Values.Data; % true states
+%             x_hat_L2O  = simOut(iter,1).logsout.getElement('x_hat_L2O2').Values.Data;  % Observed states (MHFDIA)
+%             BDD_res1   = simOut(iter,1).logsout.getElement('BDD_res2').Values.Data; % Bad data residue(MHFDIA)
+%         else
+%             time_vec  = simOut(iter,1).logsout.getElement('x').Values.Time;
+%             x          = simOut(iter,1).logsout.getElement('x').Values.Data; % true states
+%             x_hat_L2O  = simOut(iter,1).logsout.getElement('x_hat_L2O').Values.Data;  % Observed states (MHFDIA)
+%             BDD_res1   = simOut(iter,1).logsout.getElement('BDD_res1').Values.Data; % Bad data residue(MHFDIA)
+%         end
         
+        time_vec  = simOut(iter,1).logsout.getElement('x').Values.Time;
+        x_hat_L2O  = simOut(iter,1).logsout.getElement('x_hat_L2O').Values.Data;  % Observed states (MHFDIA)
+        BDD_res1   = simOut(iter,1).logsout.getElement('BDD_res1').Values.Data; % Bad data residue(MHFDIA)
+
+%         mean_effect_MHFDIA(iter) = mean(vecnorm(x(time_vec>T_start_attack)-x_hat_L2O(time_vec>T_start_attack),2,2)./vecnorm(x(time_vec>T_start_attack),2,2));
+%         max_effect_MHFDIA(iter) = max(vecnorm(x(time_vec>T_start_attack)-x_hat_L2O(time_vec>T_start_attack),2,2)./vecnorm(x(time_vec>T_start_attack),2,2));
+%         min_effect_MHFDIA(iter) = min(vecnorm(x(time_vec>T_start_attack)-x_hat_L2O(time_vec>T_start_attack),2,2)./vecnorm(x(time_vec>T_start_attack),2,2));
+
         mean_effect_MHFDIA(iter) = mean(vecnorm(x(time_vec>T_start_attack)-x_hat_L2O(time_vec>T_start_attack),2,2));
         max_effect_MHFDIA(iter) = max(vecnorm(x(time_vec>T_start_attack)-x_hat_L2O(time_vec>T_start_attack),2,2));
         min_effect_MHFDIA(iter) = min(vecnorm(x(time_vec>T_start_attack)-x_hat_L2O(time_vec>T_start_attack),2,2));
@@ -55,16 +65,16 @@ for idx = 1:tot
     Min_BDD(idx) = min(Min_BDD_MHFDIA); 
 end
 
-% Max_effect = Max_effect(1:end);
-% Mean_effect = Mean_effect(1:end);
-% Min_effect = Min_effect(2:end);
-% 
-% Max_BDD = Max_BDD(2:end);
-% Mean_BDD = Mean_BDD(2:end);
-% Min_BDD = Min_BDD(2:end);
+Max_effect = Max_effect(2:end);
+Mean_effect = Mean_effect(2:end);
+Min_effect = Min_effect(2:end);
+
+Max_BDD = Max_BDD(2:end);
+Mean_BDD = Mean_BDD(2:end);
+Min_BDD = Min_BDD(2:end);
 
 % x axis
-N_attack = linspace(1,n_meas,n_meas);
+N_attack = linspace(2,n_meas,n_meas-1);
 N_Attack2 = [N_attack, fliplr(N_attack)];
 
 LW = 1.5;  % linewidth
