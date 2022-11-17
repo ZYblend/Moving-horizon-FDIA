@@ -29,7 +29,7 @@ Simulink.BlockDiagram.buildRapidAcceleratorTarget(model);
 
 
 % for number of attacks bigger than 2
-for idx = 1:tot
+for idx = 15:tot
 
     rng default  % reset random generator for different attack percentage
 
