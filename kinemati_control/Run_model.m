@@ -11,13 +11,11 @@ theta0=0;
 x0=0;
 y0=0;
 
-u0 = [0;0];
-
 z_initial = [theta0;x0;y0];   % initial for reference kinematic model
 z_hat0 = [0;0;0];
 
 n_states  = 3;  % number of states
-n_meas = 6;     % number of meansurement nodes
+n_meas = 7;     % number of meansurement nodes
 n_int = 2;      % number of control inputs
 
 y0 = zeros(n_meas,1);
@@ -28,8 +26,8 @@ Ts = 0.01;  % (s)
 T_final = 500;
 
 %% controller
-kx = 4;
-ky = 4;
+kx = 5;
+ky = 5;
 
 %% MPC Controller
 L = 10;  % horizon
