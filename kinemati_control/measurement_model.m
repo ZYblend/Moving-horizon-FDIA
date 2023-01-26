@@ -12,7 +12,6 @@ y = z(3);
 %% measurement model
 y_meas = [x*cos(theta);
           y*sin(theta);
-          theta;
           x;
           y;
           0.25*x/r + 0.25*L*y/r;

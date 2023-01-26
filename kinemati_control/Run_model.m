@@ -15,7 +15,7 @@ z_initial = [theta0;x0;y0];   % initial for reference kinematic model
 z_hat0 = [0;0;0];
 
 n_states  = 3;  % number of states
-n_meas = 7;     % number of meansurement nodes
+n_meas = 6;     % number of meansurement nodes
 n_int = 2;      % number of control inputs
 
 y0 = zeros(n_meas,1);
@@ -76,10 +76,10 @@ bineq = [kron(ones(L,1),u_up);
 
 
 %% covariance of measurement noise
-R_meas = 1e-3;
+R_meas = 1e-4;
 R_diag = diag(kron(ones(1,n_meas),R_meas));
 
-P_diag = (1e-3)*eye(n_states);
+P_diag = zeros(n_states);
 
 
 %% lineraization in T horizon 

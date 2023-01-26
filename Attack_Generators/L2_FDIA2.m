@@ -6,7 +6,7 @@ function [stop_iter,e_i] = L2_FDIA2(H,I,eps,max_iter)
 % Yu Zheng, 09/19/2021, FSU
 
 %% parameteres
-[m,n] = size(H,1);
+[m,n] = size(H);
 
 [U,S,V] = svd(H);
 U1 = U(:,1:n);
