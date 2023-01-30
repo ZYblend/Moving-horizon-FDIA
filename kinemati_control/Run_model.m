@@ -8,11 +8,11 @@ d  = 0.1;                        % distance betwen medium point of axis of wheel
 
 %% Initial condition
 theta0=0;
-x0=0;
+x0=1;
 y0=0;
 
 z_initial = [theta0;x0;y0];   % initial for reference kinematic model
-z_hat0 = [0;0;0];
+z_hat0 = z_initial;
 
 n_states  = 3;  % number of states
 n_meas = 6;     % number of meansurement nodes
@@ -26,8 +26,8 @@ Ts = 0.01;  % (s)
 T_final = 500;
 
 %% controller
-kx = 5;
-ky = 5;
+kx = 15;
+ky = 15;
 
 %% MPC Controller
 L = 10;  % horizon
@@ -79,7 +79,8 @@ bineq = [kron(ones(L,1),u_up);
 R_meas = 1e-4;
 R_diag = diag(kron(ones(1,n_meas),R_meas));
 
-P_diag = zeros(n_states);
+P_inp = 1e-10;
+P_diag = P_inp * eye(n_states);
 
 
 %% lineraization in T horizon 
