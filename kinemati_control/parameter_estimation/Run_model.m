@@ -4,10 +4,10 @@ clc
 
 %% parameter
 % a1 = 5.29140375889488;
-a1 = 2.5;
+a1 = 2.94204835631313;
 % a2 = 5.05605242551437;
 % d  = 0.107542007874855;                        % distance betwen medium point of axis of wheels and center of mass(m)
-a2 = 2.4;
+a2 = 2.67256528206959;
 d = 0.05;
 
 %% sampling time
@@ -22,12 +22,11 @@ Ts = 0.01;
 % v     = load('dataset/est_par_test2').v;
 % w     = load('dataset/est_par_test2').w;
 
-theta = load('dataset/est_par_test8').theta;
-x     = load('dataset/est_par_test8').x;
-y     = load('dataset/est_par_test8').y;
-
-v     = load('dataset/est_par_test8').v;
-w     = load('dataset/est_par_test8').w;
+theta = load('dataset/data5').theta;
+x     = load('dataset/data5').x;
+y     = load('dataset/data5').y;
+v     = load('dataset/data5').v;
+w     = load('dataset/data5').w;
 
 % v = ones(length(theta),1)*v;
 % w = ones(length(theta),1)*w;
@@ -41,7 +40,7 @@ for idx = 2:length(theta)
     if dif <-pi
         iter = iter +1;
     end
-    theta_new(idx) = iter*2*pi+(theta(idx)+pi);
+    theta_new(idx) = ( pi+(iter-1)*2*pi )*(iter>0.5)+ ( theta(idx)+pi*(iter>0.5) );
 end
 
 

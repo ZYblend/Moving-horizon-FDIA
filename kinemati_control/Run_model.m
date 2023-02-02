@@ -10,7 +10,7 @@ r=0.05;     %radius of wheels,(m)
 
 %% Initial condition
 theta0=0;
-x0=1;
+x0=0;
 y0=0;
 
 z_initial = [theta0;x0;y0];   % initial for reference kinematic model
@@ -25,7 +25,7 @@ u0 = zeros(n_int,1);
 
 %% sampling time
 Ts = 0.01;  % (s)
-T_final = 500;
+T_final = 300;
 
 %% controller
 kx = 15;
@@ -36,7 +36,7 @@ ky = 15;
 R_meas = 1e-4;
 R_diag = diag(kron(ones(1,n_meas),R_meas));
 
-P_inp = 1e-10;
+P_inp = 1e-8;
 P_diag = P_inp * eye(n_states);
 
 
@@ -45,13 +45,13 @@ Ad = eye(n_states);
 Bd = @(theta) [0 1;
                cos(theta) -d*sin(theta);
                sin(theta) d*cos(theta)] * Ts;
-% C = @(x,y,theta) [-x*sin(theta) cos(theta) 0;
-%                    y*cos(theta) 0 sin(theta);
-%                    0 1 0;
-%                    0 0 1;
-%                    0 1/(4*r) L/(4*r);
-%                    0 1/(4*r) -L/(4*r)];
-% Cd = C(0,0,1.5);
+C = @(x,y,theta) [-x*sin(theta) cos(theta) 0;
+                   y*cos(theta) 0 sin(theta);
+                   0 1 0;
+                   0 0 1;
+                   0 1/(4*r) L/(4*r);
+                   0 1/(4*r) -L/(4*r)];
+Cd = C(1.5,1,0);
 
 
 %% Attack Parameters
@@ -62,7 +62,7 @@ I_single = sort(randperm(n_meas,n_attack)).';
 
 
 %% Bad Data Detection
-BDD_thresh = 1;  % Bad data detection tolerance
+BDD_thresh = 0.5;  % Bad data detection tolerance
 
 % %% L2 moving-horizon attack generation
 % T = 10;
@@ -105,3 +105,4 @@ max_iter = 2000;   % maximal number of iteration of PGA algorithm
 % Se1 = S(1:n_states,1:n_states);
 % Ue11 = U(I_attack(1:(T1-1)*n_attack),1:n_states);
 % Ue12 = U(I_attack((T1-1)*n_attack+1:end),1:n_states);
+[stop_iter,e] = L2_FDIA2(Cd,I_single,0.9*BDD_thresh,max_iter);
