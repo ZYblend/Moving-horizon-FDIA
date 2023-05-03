@@ -7,9 +7,11 @@ We only assume the attacker have the knowledge of the kinmeatic model.
  </p>
 
 ## Results:
-- Line path tracking <br>
-{{< youtube ekq_VQk60cI >}} <br>
-- Circle path tracking <br>
-{{< youtube emcXW4K2kR4 >}} <br>
-- Figure-8 path tracking <br>
-{{< youtube EPwntD_uz5E >}}
+[![Circle path tracking](https://user-images.githubusercontent.com/36635562/235941845-8528fd21-d464-401d-a01c-931ca223e8a3.png
+)](https://youtu.be/ekq_VQk60cI)
+
+[![Figure-8 path tracking](https://user-images.githubusercontent.com/36635562/235942003-31920fc2-8e14-472a-b331-33d74bc7bb6b.png
+)](https://youtu.be/EPwntD_uz5E)
+
+[![Line path tracking](https://user-images.githubusercontent.com/36635562/235941638-d1de099c-e8f1-400f-924b-e351ce2a6730.png
+)](https://youtube.com/shorts/emcXW4K2kR4)
