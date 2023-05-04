@@ -28,7 +28,7 @@ In this repo, I am presenting two demos to validate the proposed MH-FDIA:
 <img src="https://user-images.githubusercontent.com/36635562/235938166-48947ee4-a53f-45cd-9197-c9ef2701ebd3.png" width="500" />
  </p>
 
-2. nonlinear path-tracking control system of differential--driven mobile wheeled robot (see branch **demo_suto_vehicle**, **experiment_auto_vehicle**)
+2. nonlinear path-tracking control system of differential--driven mobile wheeled robot (see branch **demo_auto_vehicle**, **experiment_auto_vehicle**)
 <p align="center">
 <img src="https://user-images.githubusercontent.com/36635562/235938124-d9e474ed-8cba-4ff7-9261-fa977180ab17.png" width="500" />
  </p>
