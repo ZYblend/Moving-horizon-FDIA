@@ -4,11 +4,15 @@ FDIA generation design aginst L2 estimators (including least-square observer, Lu
 
 However, we recently observer the ineffectiveness of those FDIA designs against moving-horizon estimators (MHE). Thus, we are sharing a heuristic moving-hroizon FDIA design framework and algorithm in our paper:
 ```
-@article{zheng2023moving,
-  title={Moving-horizon False Data Injection Attack Design against Cyber-Physical Systems},
-  author={Zheng, Yu and Mudhangulla, Sridhar Babu and Anubi, Olugbenga Moses},
-  journal={Control Engineering Practice},
-  year={2023}
+@article{ZHENG2023105552,
+title = {Moving-horizon false data injection attack design against cyber–physical systems},
+journal = {Control Engineering Practice},
+volume = {136},
+pages = {105552},
+year = {2023},
+issn = {0967-0661},
+author = {Yu Zheng and Sridhar Babu Mudhangulla and Olugbenga Moses Anubi},
+doi = {https://doi.org/10.1016/j.conengprac.2023.105552}
 }
 ```
 
