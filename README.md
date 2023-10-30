@@ -1,4 +1,19 @@
 # Moving-horizon-FDIA
+<!-- Badges -->
+<p>
+  <a href="">
+    <img src="https://img.shields.io/github/last-commit/ZYblend/Moving-horizon-FDIA" alt="last update" />
+  </a>
+  <a href="https://github.com/ZYblend/Motion_planning_and_control_demos/stargazers">
+    <img src="https://img.shields.io/github/stars/ZYblend/Moving-horizon-FDIA" alt="stars" />
+  </a>
+  <a href="https://github.com/ZYblend/Motion_planning_and_control_demos/issues/">
+    <img src="https://img.shields.io/github/issues/ZYblend/Moving-horizon-FDIA" alt="open issues" />
+  </a>
+  <a href="https://github.com/ZYblend/Motion_planning_and_control_demos/LICENSE">
+    <img src="https://img.shields.io/github/license/ZYblend/Moving-horizon-FDIA.svg" alt="license" />
+  </a>
+</p>
 
 FDIA generation design aginst L2 estimators (including least-square observer, Luenberger observer, Kalman filter) have been well studied, and motivates model-based and learning-based approaches for attack generation problem.
 
@@ -23,12 +38,12 @@ We share the simulation of MH-FDIA design here: <br>
 
 
 In this repo, I am presenting two demos to validate the proposed MH-FDIA:
-1. linear control system of IEEE 14-bus system (see branch **demo_14_bus_system**)
+1. linear control system of IEEE 14-bus system (see branch [**demo_14_bus_system**](https://github.com/ZYblend/Moving-horizon-FDIA/tree/demo_14_bus_system))
 <p align="center">
 <img src="https://user-images.githubusercontent.com/36635562/235938166-48947ee4-a53f-45cd-9197-c9ef2701ebd3.png" width="500" />
  </p>
 
-2. nonlinear path-tracking control system of differential--driven mobile wheeled robot (see branch **demo_auto_vehicle**, **experiment_auto_vehicle**)
+2. nonlinear path-tracking control system of differential--driven mobile wheeled robot (see branch [**demo_auto_vehicle**](https://github.com/ZYblend/Moving-horizon-FDIA/tree/demo_14_bus_system), [**experiment_auto_vehicle**](https://github.com/ZYblend/Moving-horizon-FDIA/tree/experiment_auto_vehicle))
 <p align="center">
 <img src="https://user-images.githubusercontent.com/36635562/235938124-d9e474ed-8cba-4ff7-9261-fa977180ab17.png" width="500" />
  </p>
